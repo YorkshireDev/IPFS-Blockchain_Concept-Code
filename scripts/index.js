@@ -1,6 +1,7 @@
 const Controller_IPFS = require('./IPFS/controller_ipfs')
 
 async function main() {
+
   const controller_ipfs = new Controller_IPFS()
 
   console.log('Initialising IPFS...')
@@ -15,6 +16,7 @@ async function main() {
   const resumeText = await controller_ipfs.download(cID)
 
   console.log('Resume Text:', resumeText)
+  
 }
 
 main()
