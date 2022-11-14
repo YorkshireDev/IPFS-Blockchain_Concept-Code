@@ -2,11 +2,13 @@ class Model_IPFS {
 
     constructor() {
 
-        this.ipfs = null;
+        this.ipfs = null; // Since you can't await in a constructor you have to do a workaround...
 
     }
 
-    async INITIALISE_IPFS() {
+    async initialise() { // ... By calling this once somewhere before you need to utilise IPFS functions to start it up.
+
+        if (this.ipfs !== null) return;
 
         async function LOAD_IPFS() {
             const { create } = await import("ipfs-core");
@@ -19,9 +21,7 @@ class Model_IPFS {
 
     async upload(resume) {
 
-        if (this.ipfs === null) { await this.INITIALISE_IPFS(); }
-
-        const {cid} = await this.ipfs.add({
+        const {cid} = await this.ipfs.add({ // To pin in IPFS it is just this.pin.add({...});
             path: "Test.TXT",
             content: resume
         });
@@ -31,8 +31,6 @@ class Model_IPFS {
     }
 
     async download(cID) {
-
-        if (this.ipfs === null) { await this.INITIALISE_IPFS(); }
 
         const textDecoder = new TextDecoder();
         let resumeText = "";

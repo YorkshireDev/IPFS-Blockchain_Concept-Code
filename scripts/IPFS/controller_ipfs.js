@@ -8,6 +8,12 @@ class Controller_IPFS {
 
     }
 
+    async initialise() {
+
+        await this.model_ipfs.initialise();
+
+    }
+
     async upload(resume) {
 
         return await this.model_ipfs.upload(resume);
