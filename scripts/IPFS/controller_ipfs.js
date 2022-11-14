@@ -26,6 +26,12 @@ class Controller_IPFS {
 
     }
 
+    async remove(cID) {
+
+        return await this.model_ipfs.remove(cID);
+
+    }
+
 }
 
 module.exports = Controller_IPFS;

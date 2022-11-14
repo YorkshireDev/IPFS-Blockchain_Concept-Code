@@ -8,7 +8,7 @@ async function main() {
   await controller_ipfs.initialise()
 
   console.log('Uploading to IPFS...')
-  const cID = await controller_ipfs.upload('Hello!!!!!!!!!')
+  const cID = await controller_ipfs.upload('HJWChbYixcWZCQqe')
 
   console.log('cID =', cID)
 
@@ -16,7 +16,10 @@ async function main() {
   const resumeText = await controller_ipfs.download(cID)
 
   console.log('Resume Text:', resumeText)
-  
+
+  console.log("Removing from IPFS... (Note, this only asks peers to delete it eventually!)")
+  await controller_ipfs.remove(cID);
+
 }
 
 main()
